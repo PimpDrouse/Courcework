@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "LfEZ9rcKR4+mCtrUFsFx7nt4zqvcUBCx/y0oascrNgG6gfgFjfsNjIl5qJuxR5h+nSzP9oj2ROlMTv6ktqPkfA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\PimpDrouse\\source\\repos\\CourceWork\\CourceWork\\CourceWork.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PimpDrouse\\.nuget\\packages\\npgsql\\6.0.4\\npgsql.6.0.4.nupkg.sha512",
+    "C:\\Users\\PimpDrouse\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

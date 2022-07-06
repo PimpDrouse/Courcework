@@ -1,0 +1,38 @@
+﻿<Window x:Class="CourceWork.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Courcework.ViewModels"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="450" Width="800"
+        x:Name="LoginnWindow">
+
+    <Window.DataContext>
+        <local:LoginViewModel/>
+    </Window.DataContext>
+    
+    <Grid ShowGridLines="True">
+
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock FontSize="30" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Authorization" Grid.Row="0"/>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+
+            <TextBlock HorizontalAlignment="Center" Text="Login"/>
+            <TextBox Text="{Binding Path=Login}" TextAlignment="Center" Margin="0,0,0,20"/>
+
+            <TextBlock HorizontalAlignment="Center" Text="Password"/>
+            <TextBox Text="{Binding Path=Password}" TextAlignment="Center" />
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Grid.Row="2">
+            <Button Content="Sign in" Command="{Binding SignInCommand}" CommandParameter="{Binding ElementName=LoginnWindow}" Margin="0,0,30,0"/>
+            <Button Content="Sing up" Command="{Binding SignUpCommand}" />
+        </StackPanel>
+    </Grid>
+</Window>
