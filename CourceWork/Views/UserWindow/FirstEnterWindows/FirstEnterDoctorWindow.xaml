@@ -3,10 +3,41 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CourceWork.View.UserWindow.FirstEnterWindow"
+        xmlns:local="clr-namespace:CourceWork.ViewModel.RoleViewModel.FirstEnterViewModels"
         mc:Ignorable="d"
+        Name="firstEnterDoc"
         Title="FirstEnterDoctorWindow" Height="450" Width="800">
+
+    <Window.DataContext>
+        <local:FirstEnterDoctorViewModel/>
+    </Window.DataContext>
+    
     <Grid>
-        
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Center" Text="Enter data" Margin="0,20,0,20" FontSize="20"/>
+            
+            <TextBlock HorizontalAlignment="Center" Text="Lastname"/>
+            <TextBox Text="{Binding DoctorData.Lname}" TextAlignment="Center" Margin="0,0,0,10"/>
+
+            <TextBlock HorizontalAlignment="Center" Text="Firstname"/>
+            <TextBox Text="{Binding DoctorData.Fname}" TextAlignment="Center" Margin="0,0,0,10"/>
+
+            <TextBlock HorizontalAlignment="Center" Text="Surname"/>
+            <TextBox Text="{Binding DoctorData.Sname}" TextAlignment="Center" Margin="0,0,0,10"/>
+
+            <TextBlock HorizontalAlignment="Center" Text="Hospital"/>
+            <ComboBox ItemsSource="{Binding Hospitals}" SelectedItem="{Binding Item}" Text="-- Select Role --" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Center"  Margin="0,0,0,10"/>
+
+            <TextBlock HorizontalAlignment="Center" Text="Specialistaion"/>
+            <TextBox Text="{Binding DoctorData.Spec}" TextAlignment="Center" Margin="0,0,0,10"/>
+
+            <TextBlock HorizontalAlignment="Center" Text="Position"/>
+            <TextBox Text="{Binding DoctorData.Pos}" TextAlignment="Center" Margin="0,0,0,10"/>
+
+            <TextBlock HorizontalAlignment="Center" Text="Cabinet"/>
+            <TextBox Text="{Binding DoctorData.Cab}" TextAlignment="Center" Margin="0,0,0,20"/>
+
+            <Button Content="Save" Command="{Binding SaveButton}" CommandParameter="{Binding ElementName=firstEnterDoc}"/>
+        </StackPanel>
     </Grid>
 </Window>

@@ -15,12 +15,6 @@ namespace CourceWork.ViewModels
         public List<string> Roles { get; set; }
         public string SelectedRole { get; set; }
 
-        public SignUpViewModel()
-        {
-            WorkWithDataBase db = new WorkWithDataBase("admin", "admin");
-            Roles = db.SelectAdapter("role", "roles", "role != 'Admin'").Tables[0].Rows.OfType<DataRow>().Select(x => x.ItemArray[0].ToString()).ToList();
-        }
-
         public ICommand SignUpCommand
         {
             get
@@ -34,6 +28,12 @@ namespace CourceWork.ViewModels
                     }
                     ));
             }
+        }
+
+        public SignUpViewModel()
+        {
+            WorkWithDataBase db = new WorkWithDataBase("admin", "admin");
+            Roles = db.SelectAdapter("role", "roles", "role != 'Admin'").Tables[0].Rows.OfType<DataRow>().Select(x => x.ItemArray[0].ToString()).ToList();
         }
 
         private void CheckSingUp()

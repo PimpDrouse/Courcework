@@ -9,7 +9,7 @@ using CourceWork.ViewModel.RoleViewModel;
 using CourceWork.Views;
 using CourceWork.ViewModels;
 
-namespace Courcework.ViewModels
+namespace CourceWork.ViewModels
 {
     public class LoginViewModel
     {
@@ -17,11 +17,6 @@ namespace Courcework.ViewModels
         private ICommand _singUpCommand;
         public string Login { get; set; }
         public string Password { get; set; }
-
-        public LoginViewModel()
-        {
-
-        }
 
         public ICommand SignUpCommand 
         {
@@ -56,7 +51,7 @@ namespace Courcework.ViewModels
                         case 2:
                             var doctorWindow = new DoctorWindow();
                             doctorWindow.Show();
-                            doctorWindow.DataContext = new DoctorViewModel(Login, doctorWindow);
+                            doctorWindow.DataContext = new DoctorViewModel(Login);
                             break;
                         case 3:
                             var patientWindow = new PatientWindow();
@@ -67,6 +62,11 @@ namespace Courcework.ViewModels
                     loginWindow.Close();
                 }));
             }
+        }
+
+        public LoginViewModel()
+        {
+
         }
 
         private object LoginCheck()

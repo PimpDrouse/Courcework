@@ -5,15 +5,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CourceWork.ViewModel.RoleViewModel.FirstEnterViewModels
 {
     public class FirstEnterDoctorViewModel
     {
-        private DoctorModel DoctorData { get; set; }
-        private List<string> Hospitals { get; set; }
-        private string Login { get; set; }
-        private string Item { get; set; }
+        public DoctorModel DoctorData { get; set; }
+        public List<string> Hospitals { get; set; }
+        public string Login { get; set; }
+        public string Item { get; set; }
+
+        public ICommand _saveButton;
+
+        public ICommand SaveButton
+        {
+            get
+            {
+                return _saveButton ?? (_saveButton = new RelayCommand
+                    (
+                        obj =>
+                        {
+                            Window sender = obj as Window;
+                            if (!CheckFields()) return;
+                            WorkWithDataBase db = new WorkWithDataBase("patient", "patient");
+
+                            DoctorData.GetHospitalId(Item);
+                            DoctorData.SavePatientInDataBase(Login);
+                            db.Update("Logins", "firstenter", "false", $"login = '{Login}'");
+
+                            sender.Close();
+                        }
+                    ));
+            }
+        }
+
+        public FirstEnterDoctorViewModel()
+        {
+
+        }
 
         public FirstEnterDoctorViewModel(string login)
         {
@@ -22,15 +52,7 @@ namespace CourceWork.ViewModel.RoleViewModel.FirstEnterViewModels
             HospitalInit();
         }
 
-        public void SaveButton(Window sender)
-        {
-            if (!CheckFields()) return;
 
-            DoctorData.GetHospitalId(Item);
-            DoctorData.SavePatientInDataBase(Login);
-
-            sender.Close();
-        }
 
         private void HospitalInit()
         {
@@ -40,19 +62,19 @@ namespace CourceWork.ViewModel.RoleViewModel.FirstEnterViewModels
 
         private bool CheckFields()
         {
-            if (DoctorData.LastName == null)
+            if (DoctorData.Lname == null)
             {
                 MessageBox.Show("Предупреждение", "Вы не ввели фамилию!!");
                 return false;
             }
 
-            if (DoctorData.FirstName == null)
+            if (DoctorData.Fname == null)
             {
                 MessageBox.Show("Предупреждение", "Вы не ввели имя!!");
                 return false;
             }
 
-            if (DoctorData.Surname == null)
+            if (DoctorData.Sname == null)
             {
                 MessageBox.Show("Предупреждение", "Вы не отчество!!");
                 return false;
@@ -64,13 +86,19 @@ namespace CourceWork.ViewModel.RoleViewModel.FirstEnterViewModels
                 return false;
             }
 
-            if (DoctorData.Specialization == null)
+            if (DoctorData.Spec == null)
             {
                 MessageBox.Show("Предупреждение", "Вы не ввели специализацию!!");
                 return false;
             }
 
-            if (DoctorData.Cabinet == null)
+            if (DoctorData.Pos == null)
+            {
+                MessageBox.Show("Предупреждение", "Вы не ввели должность!!");
+                return false;
+            }
+
+            if (DoctorData.Cab == null)
             {
                 MessageBox.Show("Предупреждение", "Вы не ввели кабинет!!");
                 return false;

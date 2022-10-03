@@ -9,9 +9,9 @@ namespace CourceWork.Model
     public abstract class PersonModel
     {
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Surname { get; set; }
+        public string Lname { get; set; }
+        public string Fname { get; set; }
+        public string Sname { get; set; }
         public int LoginId { get; set; }
         public int HospitalId { get; set; }
 
@@ -21,23 +21,28 @@ namespace CourceWork.Model
 
         }
 
-        public PersonModel(int id, string firstName, string lastName, string surname, int loginId, int hospitalId)
+        public PersonModel(int id, string lastName, string firstName, string surname, int loginId, int hospitalId)
         {
             Id = id;
-            FirstName = firstName;
-            LastName = lastName;
-            Surname = surname;
+            Lname = lastName;
+            Fname = firstName;
+            Sname = surname;
             LoginId = loginId;
             HospitalId = hospitalId;
         }
-
 
         public int SavePersonInDataBase(string login)
         {
             WorkWithDataBase db = new WorkWithDataBase("admin", "admin");
             LoginId = (int)db.Select("Id", "Logins", $"Login='{login}'")[0][0];
-            Id = (int)db.InsertRet("persondata", $"lastname,firstname,surname,loginid,hospitalid", $"'{FirstName}', '{LastName}', '{Surname}', {LoginId}, {HospitalId}", "id");
+            Id = (int)db.ScalarFunction("insertPersonData", $"'{Lname}', '{Fname}', '{Sname}', {LoginId}, {HospitalId}");
             return Id;
+        }
+
+        public void UpdatePerson()
+        {
+            WorkWithDataBase db = new WorkWithDataBase("doctor", "doctor");
+            db.Proc("updatePerson", $"{Id}, '{Lname}', '{Fname}', '{Sname}', {HospitalId}");
         }
 
         public void GetHospitalId(string item)

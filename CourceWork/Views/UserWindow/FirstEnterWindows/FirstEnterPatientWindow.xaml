@@ -3,10 +3,35 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CourceWork.View.UserWindow.FirstEnterWindow"
+        xmlns:local="clr-namespace:CourceWork.ViewModel.RoleViewModel.FirstEnterViewModels"
         mc:Ignorable="d"
+        Name="firstEnterPat"
         Title="FirstEnterPatientWindow" Height="450" Width="800">
+
+    <Window.DataContext>
+        <local:FirstEnterPatientViewModel/>
+    </Window.DataContext>
+    
     <Grid>
-        
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Center" Text="Enter data" Margin="0,40,0,30" FontSize="20"/>
+
+            <TextBlock HorizontalAlignment="Center" Text="Lastname"/>
+            <TextBox Text="{Binding PatientData.Lname}" TextAlignment="Center" Margin="0,0,0,20"/>
+
+            <TextBlock HorizontalAlignment="Center" Text="Firstname"/>
+            <TextBox Text="{Binding PatientData.Fname}" TextAlignment="Center" Margin="0,0,0,20"/>
+
+            <TextBlock HorizontalAlignment="Center" Text="Surname"/>
+            <TextBox Text="{Binding PatientData.Sname}" TextAlignment="Center" Margin="0,0,0,20"/>
+
+            <TextBlock HorizontalAlignment="Center" Text="Hospital"/>
+            <ComboBox ItemsSource="{Binding Hospitals}" SelectedItem="{Binding Item}" Text="-- Select Role --" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Center"  Margin="0,0,0,20"/>
+
+            <TextBlock HorizontalAlignment="Center" Text="MedicalPolicy"/>
+            <TextBox Text="{Binding PatientData.MedicalPolicy}" TextAlignment="Center" Margin="0,0,0,20"/>
+
+            <Button Content="Save" Command="{Binding SaveButton}" CommandParameter="{Binding ElementName=firstEnterPat}"/>
+        </StackPanel>
     </Grid>
 </Window>

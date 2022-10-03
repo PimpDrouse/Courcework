@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourceWork.Model
 {
-    class PatientModel : PersonModel
+    public class PatientModel : PersonModel
     {
         public int Id { get; set; }
         public string MedicalPolicy { get; set; }
@@ -17,10 +17,17 @@ namespace CourceWork.Model
 
         }
 
-        public PatientModel(int personDataId, string firstName, string lastName, string surname, int loginId, int hospitalId, int id, string medicalPolicy) : base(personDataId, firstName, lastName, surname, loginId, hospitalId)
+        public PatientModel(int id, string medicalPolicy, int personDataId, string lastName, string firstName, string surname, int loginId, int hospitalId) : base(personDataId, lastName, firstName, surname, loginId, hospitalId)
         {
             Id = id;
             MedicalPolicy = medicalPolicy;
+            PersonDataId = personDataId;
+        }
+
+        public void UpdatePatient()
+        {
+            WorkWithDataBase db = new WorkWithDataBase("patient", "patient");
+            db.Proc("updatePatient", $"{Id}, '{MedicalPolicy}'");
         }
 
         public int SavePatientInDataBase(string login)
@@ -28,7 +35,7 @@ namespace CourceWork.Model
             PersonDataId = SavePersonInDataBase(login);
 
             WorkWithDataBase db = new WorkWithDataBase("admin", "admin");
-            Id = (int)db.InsertRet("patients", "medicalPolicy,personDataId", $"'{MedicalPolicy}', {PersonDataId}", "id");
+            Id = (int)db.ScalarFunction("insertPatient", $"'{MedicalPolicy}', {PersonDataId}");
             return Id;
         }
     }

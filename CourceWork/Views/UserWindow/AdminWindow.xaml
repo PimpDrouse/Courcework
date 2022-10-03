@@ -3,10 +3,107 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CourceWork.View.UserWindow"
+        xmlns:local="clr-namespace:CourceWork.ViewModel.RoleViewModel"
         mc:Ignorable="d"
+        Name = "adminWindow"
         Title="AdminWindow" Height="450" Width="800">
+
+    <Window.DataContext>
+        <local:AdminViewModel/>
+    </Window.DataContext>
+
     <Grid>
-        
+        <TabControl HorizontalAlignment="Stretch" >
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabPanel}">
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                </Style>
+            </TabControl.Resources>
+
+            <TabItem Header="User list" HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Vertical">
+
+                    <DataGrid HorizontalAlignment="Stretch" SelectedItem="{Binding SelectedLogins}" AutoGenerateColumns="False" FontStyle="Italic" ItemsSource="{Binding Logins}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Role" Binding="{Binding role}"/>
+                            <DataGridTextColumn Header="Login" Binding="{Binding login}"/>
+                            <DataGridTextColumn Header="Password" Binding="{Binding password}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Update" Command="{Binding LoginsUpdateButton}"/>
+                        <Button Content="Delete" Command="{Binding LoginsDeleteButton}"/>
+                    </StackPanel>
+
+                    <DataGrid x:Name="RoleDataGrid"  HorizontalAlignment="Stretch" SelectedItem="{Binding SelectedNameRole}" AutoGenerateColumns="False" FontStyle="Italic" ItemsSource="{Binding Roles}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Role" Binding="{Binding role}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Add" Command="{Binding RoleAddButton}"/>
+                        <Button Content="Update" Command="{Binding RoleUpdateButton}"/>
+                        <Button Content="Delete" Command="{Binding RoleDeleteButton}"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Hospitals" HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Vertical">
+
+                    <DataGrid x:Name="HospitalDataGrid" SelectedItem="{Binding SelectedNameHospital}" AutoGenerateColumns="False" FontStyle="Italic" ItemsSource="{Binding Hospitals}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Hospital" Binding="{Binding name}"/>
+                            <DataGridTextColumn Header="Location" Binding="{Binding location}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Add" Command="{Binding HospitalAddButton}"/>
+                        <Button Content="Delete" Command="{Binding HospitalDeleteButton}"/>
+                        <Button Content="Update" Command="{Binding HospitalUpdateButton}"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Appointments" HorizontalAlignment="Stretch">
+
+                <StackPanel Orientation="Vertical">
+
+                    <DataGrid x:Name="AppointmentsDataGrid" AutoGenerateColumns="False" FontStyle="Italic" ItemsSource="{Binding Appointments}" Height="194">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name doctor" Binding="{Binding doctorsname}"/>
+                            <DataGridTextColumn Header="Specisalisation" Binding="{Binding specialisation}"/>
+                            <DataGridTextColumn Header="Date" Binding="{Binding date}"/>
+                            <DataGridTextColumn Header="Time" Binding="{Binding time}"/>
+                            <DataGridTextColumn Header="Cabinet" Binding="{Binding cabinet}"/>
+                            <DataGridTextColumn Header="Patient" Binding="{Binding patientname}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <DataGrid x:Name="CountAppointmentsDataGrid" AutoGenerateColumns="False" FontStyle="Italic" ItemsSource="{Binding CountAppointment}" Height="186">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Lastname" Binding="{Binding lname}"/>
+                            <DataGridTextColumn Header="Firstname" Binding="{Binding fname}"/>
+                            <DataGridTextColumn Header="Surname" Binding="{Binding surname}"/>
+                            <DataGridTextColumn Header="Specialisation" Binding="{Binding spec}"/>
+                            <DataGridTextColumn Header="Cabinet" Binding="{Binding cab}"/>
+                            <DataGridTextColumn Header="Free appointments" Binding="{Binding cou}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </StackPanel>
+            </TabItem>
+
+            <TabItem HorizontalAlignment="Right">
+                <TabItem.Header>
+                    <Button HorizontalAlignment="Right" Content="Log out" Command="{Binding LogOutButton}" CommandParameter="{Binding ElementName=adminWindow}"/>
+                </TabItem.Header>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

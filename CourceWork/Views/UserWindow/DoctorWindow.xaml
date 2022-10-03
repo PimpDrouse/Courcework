@@ -3,10 +3,68 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CourceWork.View.UserWindow"
+        xmlns:local="clr-namespace:CourceWork.ViewModel.RoleViewModel"
         mc:Ignorable="d"
+        Name="docWindow"
         Title="DoctorWindow" Height="450" Width="800">
+
+    <Window.DataContext>
+        <local:DoctorViewModel/>
+    </Window.DataContext>
     <Grid>
-        
+        <TabControl>
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabPanel}">
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                </Style>
+            </TabControl.Resources>
+            
+            <TabItem Header="Appointments">
+                <StackPanel>
+                    
+                    <DataGrid HorizontalAlignment="Stretch" SelectedItem="{Binding SelectedApppointment}" AutoGenerateColumns="False" FontStyle="Italic" ItemsSource="{Binding Appointments}" Height="340">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Patient" Binding="{Binding patientname}"/>
+                            <DataGridTextColumn Header="Cabinet" Binding="{Binding cabinet}"/>
+                            <DataGridTextColumn Header="Med pol" Binding="{Binding medpol}"/>
+                            <DataGridTextColumn Header="Time" Binding="{Binding timee}"/>
+                            <DataGridTextColumn Header="Date" Binding="{Binding datee}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Button Content="Cancel appointment" Command="{Binding CancelAppointment}" Margin="0,20"/>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Settings">
+                 <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" Text="Enter data" Margin="0,40,0,30" FontSize="20"/>
+
+                    <TextBlock HorizontalAlignment="Center" Text="Lastname"/>
+                    <TextBox Text="{Binding PatientData.Lname}" TextAlignment="Center" Margin="0,0,0,20"/>
+
+                    <TextBlock HorizontalAlignment="Center" Text="Firstname"/>
+                    <TextBox Text="{Binding PatientData.Fname}" TextAlignment="Center" Margin="0,0,0,20"/>
+
+                    <TextBlock HorizontalAlignment="Center" Text="Surname"/>
+                    <TextBox Text="{Binding PatientData.Sname}" TextAlignment="Center" Margin="0,0,0,20"/>
+
+                    <TextBlock HorizontalAlignment="Center" Text="Hospital"/>
+                    <ComboBox ItemsSource="{Binding Hospitals}" SelectedItem="{Binding Item}" Text="-- Select Role --" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Center"  Margin="0,0,0,20"/>
+
+                    <TextBlock HorizontalAlignment="Center" Text="MedicalPolicy"/>
+                    <TextBox Text="{Binding PatientData.MedicalPolicy}" TextAlignment="Center" Margin="0,0,0,20"/>
+
+                    <Button Content="Save" Command="{Binding SaveData}" CommandParameter="{Binding ElementName=firstEnterPat}"/>
+
+                </StackPanel>
+            </TabItem>
+
+            <TabItem HorizontalAlignment="Right">
+                <TabItem.Header>
+                    <Button HorizontalAlignment="Right" Content="Log out" Command="{Binding LogOutButton}" CommandParameter="{Binding ElementName=docWindow}"/>
+                </TabItem.Header>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

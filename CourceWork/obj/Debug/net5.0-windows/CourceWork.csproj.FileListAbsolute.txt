@@ -8,7 +8,6 @@ C:\Users\PimpDrouse\source\repos\CourceWork\CourceWork\obj\Debug\net5.0-windows\
 C:\Users\PimpDrouse\source\repos\CourceWork\CourceWork\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\PimpDrouse\source\repos\CourceWork\CourceWork\obj\Debug\net5.0-windows\CourceWork_MarkupCompile.cache
 C:\Users\PimpDrouse\source\repos\CourceWork\CourceWork\obj\Debug\net5.0-windows\CourceWork_MarkupCompile.lref
-C:\Users\PimpDrouse\source\repos\CourceWork\CourceWork\obj\Debug\net5.0-windows\CourceWork.csproj.AssemblyReference.cache
 C:\Users\PimpDrouse\source\repos\CourceWork\CourceWork\obj\Debug\net5.0-windows\Views\SignUpWindow.g.cs
 C:\Users\PimpDrouse\source\repos\CourceWork\CourceWork\obj\Debug\net5.0-windows\Views\LoginWindow.baml
 C:\Users\PimpDrouse\source\repos\CourceWork\CourceWork\obj\Debug\net5.0-windows\Views\UserWindow\AdminWindow.baml
@@ -36,3 +35,4 @@ C:\Users\PimpDrouse\source\repos\CourceWork\CourceWork\obj\Debug\net5.0-windows\
 C:\Users\PimpDrouse\source\repos\CourceWork\CourceWork\obj\Debug\net5.0-windows\CourceWork.csproj.CoreCompileInputs.cache
 C:\Users\PimpDrouse\source\repos\CourceWork\CourceWork\obj\Debug\net5.0-windows\CourceWork.csproj.CopyComplete
 C:\Users\PimpDrouse\source\repos\CourceWork\CourceWork\obj\Debug\net5.0-windows\CourceWork.genruntimeconfig.cache
+C:\Users\PimpDrouse\source\repos\CourceWork\CourceWork\obj\Debug\net5.0-windows\CourceWork.csproj.AssemblyReference.cache

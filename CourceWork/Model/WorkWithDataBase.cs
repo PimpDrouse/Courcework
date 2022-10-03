@@ -106,6 +106,21 @@ namespace CourceWork.Model
             return list;
         }
 
+        public object ScalarFunction(string funkName, string paramet) 
+        {
+            using (NpgsqlConnection conn = new NpgsqlConnection(ConnectString))
+            {
+                conn.Open();
+                string textCommand = $"SELECT * FROM {funkName}({paramet});";
+                NpgsqlCommand command = new NpgsqlCommand(textCommand, conn);
+
+                NpgsqlDataReader reader = command.ExecuteReader();
+
+                reader.Read();
+                return reader[0];
+            }
+        }
+
         public void Insert(string table, string fields, string values)
         {
             using (NpgsqlConnection conn = new NpgsqlConnection(ConnectString))
@@ -146,6 +161,20 @@ namespace CourceWork.Model
                 conn.Open();
 
                 string textCommand = $"UPDATE {table} SET {field} = {value} WHERE {where};";
+                NpgsqlCommand command = new NpgsqlCommand(textCommand, conn);
+                command.ExecuteNonQuery();
+
+                conn.Close();
+            }
+        }
+
+        public void Proc(string nameProc, string arg) 
+        {
+            using (NpgsqlConnection conn = new NpgsqlConnection(ConnectString))
+            {
+                conn.Open();
+
+                string textCommand = $"CALL {nameProc}({arg});";
                 NpgsqlCommand command = new NpgsqlCommand(textCommand, conn);
                 command.ExecuteNonQuery();
 

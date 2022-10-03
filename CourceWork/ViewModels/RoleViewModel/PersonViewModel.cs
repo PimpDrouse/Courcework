@@ -10,6 +10,7 @@ namespace CourceWork.ViewModel.RoleViewModel
     {
         private string Login { get; set; }
 
+        public PersonViewModel() { }
         public PersonViewModel(string login)
         {
             Login = login;
